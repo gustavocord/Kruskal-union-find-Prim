@@ -1,88 +1,118 @@
 package logica;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Grafo {
+/*
+  Representacin con Lista de vecinos
+*/
+public class Grafo 
+{
+	protected ArrayList<Set<Integer>> vecinos;
+	protected int vertice; 
 	
-	// Representamos el grafo por su matriz de adyacencia
-		private boolean[][] A;
+	public Grafo( int vertices)
+	{
+		vecinos = new ArrayList<Set<Integer>>(vertices);
+
+		for (int i = 0; i < vertices; i++)
+			vecinos.add(new HashSet<Integer>());	
+
+		vertice = vertices;
+	}
+	
+	public void agregarArista ( int i, int j)
+	{
+		verificarArista(i, j);
 		
-		// La cantidad de vertices esta predeterminada desde el constructor
-		public Grafo(int vertices)
-		{
-			A = new boolean[vertices][vertices];
-		}
+		vecinos.get(i).add(j);
+		vecinos.get(j).add(i);
+	}
+	
+	public void eliminarArista(int i, int j)
+	{
+		verificarArista(i, j);
 		
-		// Agregado de aristas
-		public void agregarArista(int i, int j)
-		{
-			verificarVertice(i);
-			verificarVertice(j);
-			verificarDistintos(i, j);
+		vecinos.get(i).remove(j);
+		vecinos.get(j).remove(i);
 
-			A[i][j] = true;
-			A[j][i] = true;
-		}
+	}
+	
+	public boolean existeArista (int i, int j)
+	{
+		verificarArista(i, j);
 		
-		// Eliminacion de aristas
-		public void eliminarArista(int i, int j)
-		{
-			verificarVertice(i);
-			verificarVertice(j);
-			verificarDistintos(i, j);
+		return vecinos.get(i).contains(j);
+	}
 
-			A[i][j] = false;
-			A[j][i] = false;
-		}
-
-		// Informa si existe la arista especificada
-		public boolean existeArista(int i, int j)
-		{
-			verificarVertice(i);
-			verificarVertice(j);
-			verificarDistintos(i, j);
-
-			return A[i][j];
-		}
-
-		// Cantidad de vertices
-		public int tamano()
-		{
-			return A.length;
-		}
+	public Set<Integer> vecinos(int i)
+	{
+		verificarVertice(i);
 		
-		// Vecinos de un vertice
-		public Set<Integer> vecinos(int i)
-		{
-			verificarVertice(i);
-			
-			Set<Integer> ret = new HashSet<Integer>();
-			for(int j = 0; j < this.tamano(); ++j) if( i != j )
-			{
-				if( this.existeArista(i,j) )
-					ret.add(j);
-			}
-			
-			return ret;		
-		}
+		return vecinos.get(i);
+	}
+
+	public int grado (int i)
+	{ 
+		return vecinos.get(i).size();
+	}
 		
-		// Verifica que sea un vertice valido
-		private void verificarVertice(int i)
-		{
-			if( i < 0 )
-				throw new IllegalArgumentException("El vertice no puede ser negativo: " + i);
-			
-			if( i >= A.length )
-				throw new IllegalArgumentException("Los vertices deben estar entre 0 y |V|-1: " + i);
-		}
+	protected void verificarArista(int i, int j) 
+	{
+		if (i == j)
+			throw new IllegalArgumentException("una arista con i=j : "+i +"/"  + j);
+		
+		verificarVertice(i);
 
-		// Verifica que i y j sean distintos
-		private void verificarDistintos(int i, int j)
-		{
-			if( i == j )
-				throw new IllegalArgumentException("No se permiten loops: (" + i + ", " + j + ")");
-		}
+		verificarVertice(j);
 
+	}
+
+	private void verificarVertice(int i) 
+	{
+		if (i < 0 || i >= vertice)
+			throw new IllegalArgumentException("fuera de rango: "+ i);
+	}
+
+	public int vertices()
+	{
+		return vertice;
+	}
+	
+	
+	public boolean esClique( Set<Integer> conjunto) 
+	{
+		if (conjunto == null)
+			throw new IllegalArgumentException("El conjunto no puede ser null");
+
+		for (int v: conjunto)
+		   verificarVertice(v);
+		
+		if (conjunto.isEmpty())
+			return true;
+		
+		for (int v: conjunto)
+		for (int otro: conjunto) 
+			if (v != otro)
+				if (existeArista(v,otro) == false)
+					return false;
+		
+		return true;
+	}
+
+	public ArrayList<Set<Integer>> get_vecinos() {
+		return vecinos;
+	}
+
+	public int getVertice() {
+		return vertice;
+	}
+
+	public void set_vertice(int _vertice) {
+		this.vertice = _vertice;
+	} 
+	
+	
 
 }
