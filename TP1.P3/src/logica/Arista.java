@@ -12,11 +12,11 @@ public class Arista implements Comparable<Arista>{
 		this.peso = peso;
 	}
 
-	public int getA() {
+	public int getOrigen() {
 		return origen+0;
 	}
 
-	public int getB() {
+	public int getDestino() {
 		return destino+0;
 	}
 	public int getPeso() {
