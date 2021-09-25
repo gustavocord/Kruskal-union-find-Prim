@@ -13,7 +13,7 @@ public class Principal {
 		kruskal.g.setArista(1, 2, 120);
 		
 		kruskal.agregarArista(new Arista(1,2,120));
-		Arista minima = kruskal.dameMinimaNoMarcada();
+		Arista minima = kruskal.getMinimaNoMarcada();
 		System.out.println(new Arista(0, 1, 250).equals(minima));
 	}
 
