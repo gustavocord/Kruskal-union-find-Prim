@@ -28,5 +28,9 @@ public class BFS {
 		
 		return marcados;
 	}
+	
+	// a ver
+	public static boolean esConexo(Grafo grafo) {
+return false;	}
 
 }
