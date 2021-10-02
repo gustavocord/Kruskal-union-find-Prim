@@ -80,6 +80,10 @@ public class Grafo
 		return vertice;
 	}
 	
+	public int tamano() {
+		return vecinos.size();
+	}
+	
 	
 	public boolean esClique( Set<Integer> conjunto) 
 	{
@@ -113,6 +117,7 @@ public class Grafo
 		this.vertice = _vertice;
 	} 
 	
+
 	
 
 }

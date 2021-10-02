@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class BFS {
 	
-	public static Set<Integer>alcanzable(Grafo grafo, int origen){
+	public static Set<Integer>alcanzable(GrafoConPeso grafo, int origen){
 		
 		Set<Integer>marcados=new HashSet<Integer>();
 		ArrayList<Integer>pendientes =new ArrayList<Integer>();
@@ -30,7 +30,9 @@ public class BFS {
 	}
 	
 	// a ver
-	public static boolean esConexo(Grafo grafo) {
-return false;	}
+	public  boolean esConexo(Grafo grafo) {
+		
+		return grafo.tamano()!=0;
+	}
 
 }
