@@ -1,83 +1,74 @@
 package logica;
 
-
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 
 
 public class Kruskal {
 
-
-	GrafoConPeso g; 
-	GrafoConPeso AGM;
-	UnionFind raices;
-	BFS anchura ;
+	private Grafo nuevo;
+	private Grafo grafo;
+	private int[] padres;
 	
-	public Kruskal(int vertices) {
-		g = new GrafoConPeso(vertices);
-		
-		AGM = new GrafoConPeso(vertices);
-		
-		raices=new UnionFind(AGM);
-		
-		anchura = new BFS();
-		
-			
-		}
+	private static ArrayList<Arista> aristas;
+	private int minimoCosto;
 
-	public Arista getMinimaNoMarcada() {
-		Arista temp = g.getAristas().get(0);
-		//Arista camino= g.getAristas().get(0);
-		for (Arista arista : g.getAristas()) {
-			
-			if(arista.compareTo(temp)<0) {
-				if (!AGM.existeArista(arista.getOrigen(),arista.getDestino()) 
-					&& !raices.mismaCompConexa(arista.getOrigen(), arista.getDestino())) {
-					temp = arista;
-				}
-			
-				
+	
+	public Kruskal(Grafo g) {
+		this.grafo = grafo;
+		
+		this.aristas = new ArrayList<Arista>();
+		//this.arbol = new ArrayList<Arista>();
+		this.minimoCosto = 0;
+		
+	}
+	
+	
+    public static  Arista pesoMinimo(){
+        int menor = aristas.get(0).getPeso();
+        for (int i = 0; i < aristas.size(); i++){
+            if (aristas.get(i).getPeso() <= menor){
+                menor = aristas.get(i).getPeso();
+            }
+        }
+        List<Arista> menores = new ArrayList<Arista>();
+        for (int i = 0; i < aristas.size(); i++){
+            if (menor == aristas.get(i).getPeso()){
+                menores.add(aristas.get(i));
+            }
+        }
+        Arista aux = menores.get(0);
+        if (!(menores.size() == 1)){
+            for (int i = 0; i < menores.size(); i++){
+                if (aux.getOrdem() > menores.get(i).getOrdem()){// falta agregar el metodo ese 
+                    aux = menores.get(i);
+                }
+            }
+        }
+        aristas.remove(aux);
+        return aux;
+    }
+    
+    
+    
+    
+	public static Grafo kruskalConBFS(Grafo grafo){
+		BFS.esConexo(grafo);
+		Grafo arbolGeneradorMinimo= new Grafo(grafo.getCantidadVertices()); //
+		Set<Arista>aristasDisponibles= new HashSet<Arista>();
+		aristas.addAll(grafo.getAristas());
+		int i= 0;
+		while(i<grafo.getCantidadDeVertices()-1) {//
+			Arista masChica= pesoMinimo(); 
+			if(!BFS.esConexo(grafo)) { //
+				//arbolGeneradorMinimo.agregarArista(masChica.getExtremo1(),masChica.getExtremo2() //grafo.peso(masChica.getExtremo1(), masChica.getExtremo2()));
+				i++;//paso al siguiente
 			}
+			aristasDisponibles.remove(masChica); //la arista ya no esta disponible
 		}
-		
-		return temp;
-		
-	}
-	
-	
-
-	public List<Arista> getMinimaNoMarcada2() {
-		Arista temp = g.getAristas().get(0);
-		List<Arista> camino = new ArrayList<Arista>();
-		for (Arista arista : g.getAristas()) {
-			
-			if(arista.compareTo(temp)<0) {
-				if (!AGM.existeArista(arista.getOrigen(),arista.getDestino()) 
-					&& !anchura.esConexo(g)) {
-					temp = arista;
-				}
-			}
-			else {
-				camino.add(arista);
-			}
-		}
-		
-		return camino;
-		
+		return arbolGeneradorMinimo;
 	}
 
-	public void agregarArista(Arista arista) {
-		AGM.setArista(arista.getOrigen(), arista.getDestino(), arista.getPeso());
-		raices.unir(arista.getOrigen(), arista.getDestino());
-	}
-	
-	//deberiamos encontrar el peso minimo para luego comenzar a recorrer por bfs
-	public void pesoMinimo() {
-		
-	}
-	
-	
-	
-	
 }
