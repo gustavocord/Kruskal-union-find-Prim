@@ -279,4 +279,8 @@ public class Grafo {
 		}
 		return this;
 	}
+	
+	public int grado(int vertice) {
+		return vertices.get(vertice).getVecinos().size();
+	 }
 }
