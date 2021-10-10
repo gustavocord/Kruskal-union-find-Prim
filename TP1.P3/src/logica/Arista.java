@@ -1,5 +1,4 @@
 package logica;
-
 public class Arista implements Comparable<Arista> {
 	private int peso;
 	private Vertice extremo1;
