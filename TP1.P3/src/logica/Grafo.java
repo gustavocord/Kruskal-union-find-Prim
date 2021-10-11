@@ -138,7 +138,7 @@ public class Grafo {
 		return this.vertices.size();
 	}
 
-	protected List<Integer> getIdsVertices() {
+	protected ArrayList<Integer> getIdsVertices() {
 		ArrayList<Integer> listaIds = new ArrayList<Integer>();
 		for (Vertice v : this.vertices) {
 			listaIds.add(v.getId());
@@ -169,7 +169,7 @@ public class Grafo {
 		return false;
 	}
 
-	public List<Arista> getAristas() {
+	public ArrayList<Arista> getAristas() {
 		return aristas;
 	}
 

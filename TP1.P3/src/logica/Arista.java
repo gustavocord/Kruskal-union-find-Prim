@@ -63,7 +63,7 @@ public class Arista implements Comparable<Arista> {
 
 	@Override
 	public String toString() {
-		return "[" + extremo1 + "," + extremo2 + "," + "P" + peso + "]";
+		return "[" + extremo1 + "," + extremo2 + "," + "Peso " + peso + "]";
 	}
 
 	@Override
