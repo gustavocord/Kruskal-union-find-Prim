@@ -8,12 +8,12 @@ import javax.swing.JButton;
 import logica.GrafoConPeso;
 import logica.TiempoDeEjecucion;
 
-public class Main {
+public class UIMain {
 
 	private VentanaPrincipal ventana;
 	private JButton btnGenerar;
 	
-	public Main(VentanaPrincipal ventana) {
+	public UIMain(VentanaPrincipal ventana) {
 		
 		this.ventana= ventana;
 		this.btnGenerar= this.ventana.getHubPanel().getBtnGenerar();
@@ -39,7 +39,7 @@ public class Main {
 	
 	public static void main(String[] args){
 		VentanaPrincipal ventana= new VentanaPrincipal();
-		Main UiMain= new Main(ventana);
+		UIMain UiMain= new UIMain(ventana);
 		UiMain.mostrarVentanaPrincipal();
 	}
 
