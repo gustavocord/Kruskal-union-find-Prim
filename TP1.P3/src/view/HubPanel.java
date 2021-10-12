@@ -3,8 +3,6 @@ package view;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SpinnerNumberModel;
 

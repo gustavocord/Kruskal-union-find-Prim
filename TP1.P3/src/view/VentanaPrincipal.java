@@ -40,7 +40,7 @@ public class VentanaPrincipal {
 	public int cantidadDeAristas() {
 		return (int) this.hubPanel.getSpinnerAristas().getValue();
 	}
-	public void actualizarGrafica(long bfs, long unionFindV1, long unionFindV2, long bfsOptimizado, long unionFindV1Optimizado, long unionFindV2Optimizado) {
-		this.hubPanel.getGraficoPanel().actualizarGrafica(bfs, unionFindV1, unionFindV2,bfsOptimizado, unionFindV1Optimizado, unionFindV2Optimizado);
+	public void actualizarGrafica(long bfs, long unionFindV) {
+		this.hubPanel.getGraficoPanel().actualizarGrafica(bfs, unionFindV);
 	}
 }

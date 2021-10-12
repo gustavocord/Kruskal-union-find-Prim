@@ -1,8 +1,6 @@
 package test;
 import logica.GrafoConPeso;
 import logica.Kruskal;
-import logica.UnionFind;
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;

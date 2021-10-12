@@ -1,22 +1,17 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Shape;
-
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PiePlot3D;
-import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.util.Rotation;
+
 
 public class GraficosPanel extends JPanel {
 
@@ -29,10 +24,7 @@ public class GraficosPanel extends JPanel {
 		this.dataset = new DefaultCategoryDataset();
 		this.dataset.setValue(0, "BFS", "");
 		this.dataset.setValue(0, "Union-Find", "");
-		this.dataset.setValue(0, "Union-Find V2", "");
-		this.dataset.setValue(0, "BFS Optimizado", "");
-		this.dataset.setValue(0, "Union-Find Optimizado", "");
-		this.dataset.setValue(0, "Union-Find V2 Optimizado", "");
+	
 
 		// Creando el Grafico
 		this.chart = ChartFactory.createBarChart
@@ -61,13 +53,10 @@ public class GraficosPanel extends JPanel {
 		this.chartPanel = new ChartPanel(this.chart);
 		this.add(this.chartPanel);
 	}
-	public void actualizarGrafica(long bfs,long unionFindV1, long unionFindV2, long bfsOptimizado, long unionFindV1Optimizado, long unionFindV2Optimizado) {
+	public void actualizarGrafica(long bfs,long unionFind) {
 		this.dataset.setValue(bfs, "BFS", "");
-		this.dataset.setValue(unionFindV1, "Union-Find", "");
-		this.dataset.setValue(unionFindV2, "Union-Find V2", "");
-		this.dataset.setValue(bfsOptimizado, "BFS Optimizado", "");
-		this.dataset.setValue(unionFindV1Optimizado, "Union-Find Optimizado", "");
-		this.dataset.setValue(unionFindV2Optimizado, "Union-Find V2 Optimizado", "");
+		this.dataset.setValue(unionFind, "Union-Find", "");
+		
 	}
 	public DefaultCategoryDataset getDataset() {
 		return dataset;
