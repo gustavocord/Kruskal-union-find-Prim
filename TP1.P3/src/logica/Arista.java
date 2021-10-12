@@ -1,103 +1,78 @@
 package logica;
-public class Arista implements Comparable<Arista> {
+
+
+public class Arista implements Comparable<Arista>{
+	private int verticeI;
+	private int verticeJ;
 	private int peso;
-	private Vertice extremo1;
-	private Vertice extremo2;
-
-	// Constructor
-	public Arista(Vertice u, Vertice v, int peso) {
-		if (u == null || v == null) {
-			throw new NullPointerException("Uno de los vertices no existe.");
-
+	public Arista(int verticeI, int verticeJ){
+		if(verticeI<0 || verticeJ<0 || (verticeI==verticeJ)) {
+			throw new IllegalArgumentException("La Arista: (" + verticeI + "," + verticeJ + ") no es valida");
 		}
-		if (u.compareTo(v) == 0) {
-			throw new IllegalArgumentException("La arista no puede tener el mismo vertice en ambos extremos.");
-		}
-		if (peso < 0) {
-			throw new IllegalArgumentException("El peso no puede ser negativo.");
-		}
-		this.extremo1 = u;
-		this.extremo2 = v;
-		this.peso = peso;
+		this.verticeI= verticeI;
+		this.verticeJ= verticeJ;
+		this.peso= -1;//indica que no esta definida
 	}
-
-	// Getters y Setters
-
-	protected int getPeso() {
-		return peso;
+	public Arista(int verticeI, int verticeJ,int peso){
+		this(verticeI,verticeJ);
+		verificarPeso(peso);
+		this.peso= peso;
 	}
-
-	protected void setPeso(int peso) {
-		this.peso = peso;
-	}
-
-	public Vertice getExtremo1() {
-		return extremo1;
-	}
-
-	protected void setExtremo1(Vertice extremo1) {
-		this.extremo1 = extremo1;
-	}
-
-	public Vertice getExtremo2() {
-		return extremo2;
-	}
-
-	protected void setExtremo2(Vertice extremo2) {
-		this.extremo2 = extremo2;
-	}
-
-	// Metodos override
-
 	@Override
-	public int compareTo(Arista a) {
-		if (this != null && a == null || this == null && a != null || this.peso != a.getPeso()) {
-			return -1;
-		} else if (this.extremo1.compareTo(a.getExtremo1()) == 0 && this.extremo2.compareTo(a.getExtremo2()) == 0
-				|| this.extremo1.compareTo(a.getExtremo2()) == 0 && this.extremo2.compareTo(a.getExtremo1()) == 0) {
-			return 0;
+	public boolean equals(Object obj) {
+		if(obj == this) {
+			return true;
 		}
-		return -1;
+		if (!Arista.class.isInstance(obj)) { //si no es del mismo tipo
+			System.out.print("no son el mismo tipo");
+			return false;
+		}
+		Arista objConvertido= (Arista) obj;
 
-	}
+		boolean valor= (this.verticeI == objConvertido.verticeI) || (this.verticeI == objConvertido.verticeJ);
+		boolean valor2= (this.verticeJ == objConvertido.verticeI) || (this.verticeJ == objConvertido.verticeJ);
 
-	@Override
-	public String toString() {
-		return "[" + extremo1 + "," + extremo2 + "," + "Peso " + peso + "]";
+		return (valor && valor2);
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((extremo1 == null) ? 0 : extremo1.hashCode());
-		result = prime * result + ((extremo2 == null) ? 0 : extremo2.hashCode());
-		result = prime * result + peso;
-		return result;
+		int mayor= this.verticeI > this.verticeJ? this.verticeI : this.verticeJ;
+		int menor= this.verticeI < this.verticeJ? this.verticeI : this.verticeJ;
+		return (Integer.toString(menor) + "," + Integer.toString(mayor)).hashCode(); //de esta forma se distingue mejor
+	};
+	@Override
+	public String toString() {
+		return "(" + this.verticeI + "," + this.verticeJ + ")";
+	}
+	public int getVerticeI() {
+		return verticeI;
+	}
+	public void setVerticeI(int verticeI) {
+		this.verticeI = verticeI;
+	}
+	public int getVerticeJ() {
+		return verticeJ;
+	}
+	public void setVerticeJ(int verticeJ) {
+		this.verticeJ = verticeJ;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Arista other = (Arista) obj;
-		if (extremo1 == null) {
-			if (other.extremo1 != null)
-				return false;
-		} else if (!extremo1.equals(other.extremo1))
-			return false;
-		if (extremo2 == null) {
-			if (other.extremo2 != null)
-				return false;
-		} else if (!extremo2.equals(other.extremo2))
-			return false;
-		if (peso != other.peso)
-			return false;
-		return true;
-	}
+	public int compareTo(Arista o) { //compara el peso
+		return this.peso - o.getPeso() ; //orden ascendente
 
+	}
+	public int getPeso() {
+		return peso;
+	}
+	public void setPeso(int peso) {
+		this.peso = peso;
+	}
+	private void verificarPeso(int peso) {
+		if(peso < 0) {
+			throw new IllegalArgumentException("El valor del peso esta fuera de rango: " + peso);
+		}
+	}
 }
+

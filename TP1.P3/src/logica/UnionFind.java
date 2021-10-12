@@ -1,11 +1,11 @@
 package logica;
 
 public class UnionFind {
-    private Grafo grafo;
+    private GrafoConPeso grafo;
     private int[] raices;
 
     public UnionFind(int cantidadDeVertices) {
-        this.grafo = new Grafo(cantidadDeVertices);
+        this.grafo = new GrafoConPeso(cantidadDeVertices);
         this.raices = new int[cantidadDeVertices];
         for (int i = 0; i < cantidadDeVertices; i++) {
             this.raices[i] = i;
@@ -43,7 +43,7 @@ public class UnionFind {
         return raiz(i) == raiz(j);
     }
 
-    public Grafo getGrafo() {
+    public GrafoConPeso getGrafo() {
         return this.grafo;
     }
 
@@ -56,7 +56,8 @@ public class UnionFind {
         this.raices = raices;
     }
 
-    public void setGrafo(Grafo grafo) {
-        this.grafo = grafo;
-    }
+    public void setGrafo(GrafoConPeso grafo) {
+		this.grafo = grafo;
+	}
+
 }
