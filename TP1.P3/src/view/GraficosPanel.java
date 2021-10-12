@@ -45,9 +45,6 @@ public class GraficosPanel extends JPanel {
 		barRenderer.setSeriesPaint(0, Color.BLACK); 
 		barRenderer.setSeriesPaint(1, Color.GREEN); 
 		barRenderer.setSeriesPaint(2, Color.YELLOW); 
-		barRenderer.setSeriesPaint(3, Color.CYAN); 
-		barRenderer.setSeriesPaint(4, Color.RED); 
-		barRenderer.setSeriesPaint(5, Color.BLUE); 
 
 		// Mostrar Grafico
 		this.chartPanel = new ChartPanel(this.chart);
