@@ -1,38 +1,46 @@
 package view;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 public class VentanaPrincipal {
 
 	private JFrame frame;
-
+	private HubPanel hubPanel;
 	public VentanaPrincipal() {
 		initialize();
+		hubPanel = new HubPanel();
+		this.frame.getContentPane().add(hubPanel);
 	}
 
+	/**
+	 * Initialize the contents of the frame.
+	 */
 	private void initialize() {
-		this.frame = new JFrame();
-
-		frame.setBounds(100, 100, 537, 364);
-		frame.setMinimumSize(new Dimension(800, 600));
-		frame.setLocationRelativeTo(null) ;
+		frame = new JFrame();
+		this.frame.setBounds(0, 0, 800, 600);
+		this.frame.setLocationRelativeTo(null); //centra la ventana
+		this.frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		}
+
 	}
-	
-	
 	public void mostrar() {
-		this.frame.setVisible(true);
+		frame.setVisible(true);
+	}
+	public JFrame getFrame() {
+		return frame;
+	}
+	public HubPanel getHubPanel() {
+		return hubPanel;
+	}
+	public int cantidadDeVertices() {
+		return (int) this.hubPanel.getSpinnerVertices().getValue();
+	}
+	public int cantidadDeAristas() {
+		return (int) this.hubPanel.getSpinnerAristas().getValue();
+	}
+	public void actualizarGrafica(long bfs, long unionFindV1, long unionFindV2, long bfsOptimizado, long unionFindV1Optimizado, long unionFindV2Optimizado) {
+		this.hubPanel.getGraficoPanel().actualizarGrafica(bfs, unionFindV1, unionFindV2,bfsOptimizado, unionFindV1Optimizado, unionFindV2Optimizado);
 	}
 }
