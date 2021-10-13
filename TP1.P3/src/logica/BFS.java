@@ -14,7 +14,10 @@ public class BFS
 		if (g==null)
 			throw new IllegalArgumentException("Se intento consultar con un grafo null!" );
 
-		if (g.getCantidadDeVertices() == 0)
+		if (g.getCantidadDeVertices() >0)// si la cantidad de vertices alcanzables coincide con la cantidad de vertices
+			// de g,
+			// entonces devuelvo true
+
 			return true;
 
 		return alcanzables(g, 0).size() == g.getCantidadDeVertices();
