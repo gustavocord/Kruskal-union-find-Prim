@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.event.ActionEvent;
+import logica.Grafo;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -8,6 +9,7 @@ import javax.swing.JButton;
 import logica.GrafoConPeso;
 import logica.TiempoDeEjecucion;
 
+@SuppressWarnings("unused")
 public class UIMain {
 
 	private VentanaPrincipal ventana;
@@ -22,6 +24,8 @@ public class UIMain {
 			public void actionPerformed(ActionEvent e) {
 				int cantDeVertices= ventana.cantidadDeVertices();
 				int cantDeAristas= ventana.cantidadDeAristas();
+				
+				
 				
 				GrafoConPeso grafo= new GrafoConPeso(cantDeVertices,cantDeAristas);
 				
