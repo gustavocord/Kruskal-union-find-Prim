@@ -15,7 +15,7 @@ public class GrafoConPeso extends Grafo{
 			this.vecinosConPeso.add(new HashSet<VecinoConPeso>());
 		}	
 	}
-	public GrafoConPeso(int cantidadDeVertices, int cantDeAristas) {
+	public GrafoConPeso(int cantidadDeVertices, int cantDeAristas, boolean conexo) {
 		super(cantidadDeVertices, cantDeAristas);
 		this.vecinosConPeso = new ArrayList<Set<VecinoConPeso>>(cantidadDeVertices);
 		for (int i = 0; i < cantidadDeVertices; i++) {
@@ -37,7 +37,7 @@ public class GrafoConPeso extends Grafo{
 		verificarArista(verticeI, verticeJ,"agregar");
 		super.getVecinos().get(verticeI).add(verticeJ);
 		super.getVecinos().get(verticeJ).add(verticeI);
-		this.aristas.add(new Arista(verticeI,verticeJ,peso));//no utilizamos el mismo metodo del super porque la arista que se agrega es con peso
+		this._aristas.add(new Arista(verticeI,verticeJ,peso));//no utilizamos el mismo metodo del super porque la arista que se agrega es con peso
 		this.vecinosConPeso.get(verticeI).add(new VecinoConPeso(verticeJ,peso));
 		this.vecinosConPeso.get(verticeJ).add(new VecinoConPeso(verticeI,peso));
 	}
@@ -71,7 +71,7 @@ public class GrafoConPeso extends Grafo{
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("|Grafo: \n");
-		for (int i = 0; i < super.cantidadDeVertices; i++) {
+		for (int i = 0; i < super._cantidadDeVertices; i++) {
 			sb.append("|" + i + ": [ ");
 			for(VecinoConPeso elem : this.vecinosConPeso.get(i)) {
 				sb.append("[" + elem.toString() + "]");

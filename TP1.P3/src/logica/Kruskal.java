@@ -5,7 +5,7 @@ public class Kruskal {
 
 	public static GrafoConPeso kruskalConBFS(GrafoConPeso grafo){
 		validarGrafoConexo(grafo);
-		GrafoConPeso arbolGeneradorMinimo= new GrafoConPeso(grafo.cantidadDeVertices); //va a tener la misma cant de vertices
+		GrafoConPeso arbolGeneradorMinimo= new GrafoConPeso(grafo._cantidadDeVertices); //va a tener la misma cant de vertices
 		Set<Arista>aristasDisponibles= new HashSet<Arista>();
 		aristasDisponibles.addAll(grafo.getAristas());
 		int i= 0;
