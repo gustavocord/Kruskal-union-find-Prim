@@ -15,8 +15,8 @@ public class GrafoConPeso extends Grafo{
 			this.vecinosConPeso.add(new HashSet<VecinoConPeso>());
 		}	
 	}
-	public GrafoConPeso(int cantidadDeVertices, int cantDeAristas, boolean conexo) {
-		super(cantidadDeVertices, cantDeAristas, conexo);
+	public GrafoConPeso(int cantidadDeVertices, int cantDeAristas) {
+		super(cantidadDeVertices, cantDeAristas);
 		this.vecinosConPeso = new ArrayList<Set<VecinoConPeso>>(cantidadDeVertices);
 		for (int i = 0; i < cantidadDeVertices; i++) {
 			this.vecinosConPeso.add(new HashSet<VecinoConPeso>());
