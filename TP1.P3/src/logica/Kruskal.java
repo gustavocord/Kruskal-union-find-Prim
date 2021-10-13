@@ -60,7 +60,6 @@ public class Kruskal {
 	private static GrafoConPeso unionFindAlgoritmo(GrafoConPeso grafo) {
 	
 		validarGrafoConexo(grafo);
-		//UnionFind arbolGeneradorMinimo= null;
 		UnionFind arbolGeneradorMinimo= new UnionFind(grafo.getCantidadDeVertices());
 		
 		Set<Arista>aristasDisponibles= new HashSet<Arista>();
