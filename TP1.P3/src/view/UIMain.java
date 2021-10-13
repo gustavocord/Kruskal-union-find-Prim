@@ -23,7 +23,7 @@ public class UIMain {
 				int cantDeVertices= ventana.cantidadDeVertices();
 				int cantDeAristas= ventana.cantidadDeAristas();
 				
-				GrafoConPeso grafo= new GrafoConPeso(cantDeVertices,cantDeAristas, true );
+				GrafoConPeso grafo= new GrafoConPeso(cantDeVertices,cantDeAristas );
 				
 				long tiempoBFS= TiempoDeEjecucion.promedioKruskalBFS(grafo,30);
 				long tiempoUFV= TiempoDeEjecucion.promedioKruskalConUnionFind(grafo,30);
