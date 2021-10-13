@@ -119,7 +119,7 @@ public class GrafoTest {
 	@Test
 	public void esConexoGrafoVacio(){
 		Grafo grafoVacio = new Grafo(0);
-		assertTrue(grafoVacio.esConexo());
+		assertFalse(grafoVacio.esConexo());
 	}
 
 	@Test
@@ -175,3 +175,4 @@ public class GrafoTest {
 		return grafoEjempo;
 	}
 }
+
