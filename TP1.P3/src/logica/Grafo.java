@@ -20,9 +20,11 @@ public class Grafo {
 		this.aristas= new HashSet<Arista>();
 		this.limiteDeAristas= (cantidadDeVertices * (cantidadDeVertices-1) ) / 2;
 	}
-	public Grafo(int cantidadDeVertices, int cantDeAristas, boolean conexo) {
+	public Grafo(int cantidadDeVertices, int cantDeAristas) {
+
 		this(cantidadDeVertices);
-		if(conexo) {
+		verificarCantidadAristaVertice(cantidadDeVertices,cantDeAristas);
+		if(!esConexo()) {
 			if(cantDeAristas<cantidadDeVertices-1) {
 				throw new IllegalArgumentException("la cantidad de aristas para un grafo conexo es de: " + (cantidadDeVertices-1));
 			}
@@ -122,7 +124,12 @@ public class Grafo {
 			throw new IllegalArgumentException("Se intento "+ accion +" con valores fuera de rango: "+ vertice);
 		}
 	}
-
+	
+	protected void verificarCantidadAristaVertice(int cantArista, int cantVertice ) {
+		if (cantArista <= 0 || cantVertice == 0  ) {
+			throw new IllegalArgumentException("Se intento consultar con valores fuera de rango: ");
+		}
+	}
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("|Grafo: \n");
@@ -160,4 +167,5 @@ public class Grafo {
 		this.cantidadDeVertices = cantidadDeVertices;
 	}	
 }
+
 
