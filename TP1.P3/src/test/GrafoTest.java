@@ -148,20 +148,21 @@ public class GrafoTest {
 	}
 	@Test
 	public void GrafoAleatorioConexo() {
-		this.grafo= new Grafo(5, 4,true);
-		assertTrue(this.grafo.esConexo());
+		this.grafo= new Grafo(5, 4);
+		//System.out.print(this.grafo.esUnArbol());
+		assertTrue(this.grafo.esUnArbol());
 	}
 	@Test (expected = IllegalArgumentException.class)
 	public void GrafoAleatorioConexoConCantAristasMenoresACantVertices() {
-		this.grafo= new Grafo(5, 3,true);
+		this.grafo= new Grafo(5, 3);
 	}
 	@Test (expected = IllegalArgumentException.class)
 	public void grafoAleatorioConExcedenteDeAristas() {
-		this.grafo= new Grafo(5, 11,false);
+		this.grafo= new Grafo(5, 11);
 	}
 	@Test (expected = IllegalArgumentException.class)
 	public void grafoAleatorioConCantAristasMenoresA0() {
-		this.grafo= new Grafo(5, -1,false);
+		this.grafo= new Grafo(5, -1);
 	}
 	//Metodos
 	private Grafo grafoEjemplo(){
